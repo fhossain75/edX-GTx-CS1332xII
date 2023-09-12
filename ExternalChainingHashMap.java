@@ -87,7 +87,9 @@ public class ExternalChainingHashMap<K, V> {
         int index = Math.abs(key.hashCode() % table.length);
 
         // Case 1: Index is null
-        if (table[index] == null)
+        if (table[index] == null) {
+            table[index] = new ExternalChainingMapEntry<>(key, value);
+        }
 
         // Index is a linked list
 
