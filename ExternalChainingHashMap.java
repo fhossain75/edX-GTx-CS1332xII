@@ -71,6 +71,11 @@ public class ExternalChainingHashMap<K, V> {
      */
     public V put(K key, V value) {
 
+        // Error Handling: Invalid input
+        if (key == null || value == null) {
+            throw new IllegalArgumentException("Error: Provided input(s) is null.");
+        }
+
         // Check if resizing is necessary
         double newLoadFactor = (double) (size + 1) / table.length;
 
