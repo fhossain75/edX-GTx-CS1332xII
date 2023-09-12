@@ -25,6 +25,7 @@ public class ExternalChainingHashMap<K, V> {
      */
     private ExternalChainingMapEntry<K, V>[] table;
     private int size;
+    private int length;
 
     /**
      * Constructs a new ExternalChainingHashMap with an initial capacity of INITIAL_CAPACITY.
@@ -70,7 +71,16 @@ public class ExternalChainingHashMap<K, V> {
      * @throws java.lang.IllegalArgumentException If key or value is null.
      */
     public V put(K key, V value) {
-        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+
+        // Check if resizing is necessary
+        double newLoadFactor = (double) (size + 1) / length;
+
+        if (newLoadFactor > MAX_LOAD_FACTOR) {
+            // Calculate new capacity
+            length = (2 * length) + 1;
+            resizeBackingTable(length);
+        }
+
         return value;
     }
 
