@@ -81,6 +81,10 @@ public class ExternalChainingHashMap<K, V> {
             resizeBackingTable(length);
         }
 
+        // Calculate compressed hashcode for key
+        int keyHashCode = key.hashCode();
+        int compressedHashCoded = Math.abs(keyHashCode % length);
+
         // Case X: Duplicate key - replace key's value with new value; inplace
         // Case X: Collision - linked list
 
