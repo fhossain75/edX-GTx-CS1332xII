@@ -25,7 +25,6 @@ public class ExternalChainingHashMap<K, V> {
      */
     private ExternalChainingMapEntry<K, V>[] table;
     private int size;
-    private int length;
 
     /**
      * Constructs a new ExternalChainingHashMap with an initial capacity of INITIAL_CAPACITY.
@@ -73,17 +72,19 @@ public class ExternalChainingHashMap<K, V> {
     public V put(K key, V value) {
 
         // Check if resizing is necessary
-        double newLoadFactor = (double) (size + 1) / length;
+        double newLoadFactor = (double) (size + 1) / table.length;
 
         if (newLoadFactor > MAX_LOAD_FACTOR) {
-            // Calculate new capacity
-            length = (2 * length) + 1;
-            resizeBackingTable(length);
+            resizeBackingTable((2 * table.length) + 1);
         }
 
-        // Calculate compressed hashcode for key
-        int keyHashCode = key.hashCode();
-        int compressedHashCoded = Math.abs(keyHashCode % length);
+        // Calculate key compressed hashcode
+        int index = Math.abs(key.hashCode() % table.length);
+
+        // Case 1: Index is null
+        if (table[index] == null)
+
+        // Index is a linked list
 
         // Case X: Duplicate key - replace key's value with new value; inplace
         // Case X: Collision - linked list
