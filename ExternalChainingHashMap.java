@@ -91,10 +91,35 @@ public class ExternalChainingHashMap<K, V> {
             table[index] = new ExternalChainingMapEntry<>(key, value);
         }
 
-        // Index is a linked list
+        else {
+            // Store value of index
+            ExternalChainingMapEntry<K, V> indexLinkedList = table[index];
+        }
+
+        // Case 2: Collision
+
+        // Check if key is duplicate
+        boolean  isDuplicate = False;
+        ExternalChainingMapEntry<K, V> curr = indexLinkedList;
+
+        while (curr != null) {
+            if (curr.getValue() == key) {
+                isDuplicate = True;
+                break;
+            }
+            curr = curr.getNext();
+        }
+
+        // Case 2.1: Duplicate key
+
+
+        if (indexLinkedList.next != null) {
+
+        }
+
+        // Case 2.2:
 
         // Case X: Duplicate key - replace key's value with new value; inplace
-        // Case X: Collision - linked list
 
         return value;
     }
