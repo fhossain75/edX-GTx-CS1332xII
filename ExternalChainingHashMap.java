@@ -81,6 +81,9 @@ public class ExternalChainingHashMap<K, V> {
             resizeBackingTable(length);
         }
 
+        // Case X: Duplicate key - replace key's value with new value; inplace
+        // Case X: Collision - linked list
+
         return value;
     }
 
