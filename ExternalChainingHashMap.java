@@ -134,7 +134,20 @@ public class ExternalChainingHashMap<K, V> {
      * @throws java.util.NoSuchElementException   If the key is not in the map.
      */
     public V remove(K key) {
-        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+
+        // Error Handling: Invalid input
+        if (key == null) {
+            throw new IllegalArgumentException("Error: Provided input(s) is null.");
+        }
+
+        // Calculate key compressed hashcode
+        int index = Math.abs(key.hashCode() % table.length);
+
+        // Error Handling: Key does not exist in map
+        if (table[index] == null) {
+            throw new NoSuchElementException("Error: Provided key does not exist in map.");
+        }
+
         return null;
     }
 
