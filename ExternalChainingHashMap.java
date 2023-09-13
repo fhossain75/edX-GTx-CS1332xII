@@ -164,9 +164,11 @@ public class ExternalChainingHashMap<K, V> {
         }
 
         // Iterate through linked list to find key
+        boolean keyFound = false;
         while (curr != null) {
             if (curr.getValue() == key) {
                 value = curr.getValue();
+                keyFound = true;
                 break;
             }
             prev = curr;
@@ -174,7 +176,13 @@ public class ExternalChainingHashMap<K, V> {
         }
 
         // Remove key
-        prev.setNext(curr);
+        if (keyFound) {
+            prev.setNext(curr);
+        }
+        else {
+            throw new NoSuchElementException("Error: Provided key does not exist in map.");
+        }
+
 
         // Decrement size
         size --;
