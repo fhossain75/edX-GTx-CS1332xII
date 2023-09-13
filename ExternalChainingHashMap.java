@@ -111,7 +111,7 @@ public class ExternalChainingHashMap<K, V> {
         }
 
         // Case 2.1: Duplicate key
-        if (isDuplicate == true) {
+        if (isDuplicate) {
             // Replace key's current value with input value
             curr.setValue(value);
         }
@@ -148,7 +148,32 @@ public class ExternalChainingHashMap<K, V> {
             throw new NoSuchElementException("Error: Provided key does not exist in map.");
         }
 
-        return null;
+        // Init variables
+        ExternalChainingMapEntry<K, V> head = table[index];
+        ExternalChainingMapEntry<K, V> prev = head;
+        ExternalChainingMapEntry<K, V> curr = head.getNext();
+        V value = null;
+
+        // Case 1: Index is not a chain
+        if (curr == null) {
+            table[index] = null;
+            return value;
+        }
+
+        // Iterate through linked list to find key
+        while (curr != null) {
+            if (curr.getValue() == key) {
+                value = curr.getValue();
+                break;
+            }
+            prev = curr;
+            curr = curr.getNext();
+        }
+
+        // Remove key
+        prev.setNext(curr);
+
+        return value;
     }
 
     /**
