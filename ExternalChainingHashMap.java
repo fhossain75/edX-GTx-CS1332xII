@@ -201,6 +201,27 @@ public class ExternalChainingHashMap<K, V> {
      */
     private void resizeBackingTable(int length) {
 
+        // Init new resized table
+        ExternalChainingMapEntry<K, V>[] newTable = (ExternalChainingMapEntry<K, V>[]) new ExternalChainingMapEntry[length];
+
+        // Populate new table with values from old table
+        for (ExternalChainingMapEntry<K, V> entry: table) {
+
+            if (entry != null) {
+
+                // Get entry key
+                K key = entry.getKey();
+
+                // Calculate key compressed hashcode (index)
+                int index = Math.abs(key.hashCode() % table.length);
+
+                // Add key, value to new table
+                newTable[index] = new ExternalChainingMapEntry<>(key, entry.getValue());
+            }
+        }
+
+        // Assign table variable to new table
+        table = newTable;
     }
 
     /**
