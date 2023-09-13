@@ -221,7 +221,7 @@ public class ExternalChainingHashMap<K, V> {
                 K key = entry.getKey();
 
                 // Calculate key compressed hashcode (index)
-                int index = Math.abs(key.hashCode() % table.length);
+                int index = Math.abs(key.hashCode() % length);
 
                 // Add key, value to new table
                 newTable[index] = new ExternalChainingMapEntry<>(key, entry.getValue());
