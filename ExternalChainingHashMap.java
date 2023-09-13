@@ -102,7 +102,7 @@ public class ExternalChainingHashMap<K, V> {
 
         // Check if key is duplicate
         while (curr != null) {
-            if (curr.getKey() == key) {
+            if (curr.getKey().equals(key)) {
                 isDuplicate = true;
                 oldValue = curr.getValue();
                 break;
@@ -146,48 +146,39 @@ public class ExternalChainingHashMap<K, V> {
         // Calculate key compressed hashcode
         int index = Math.abs(key.hashCode() % table.length);
 
-        // Error Handling: Key does not exist in map
-        if (table[index] == null) {
-            throw new NoSuchElementException("Error: Provided key does not exist in map.");
-        }
-
         // Init variables
-        ExternalChainingMapEntry<K, V> head = table[index];
-        ExternalChainingMapEntry<K, V> prev = head;
-        ExternalChainingMapEntry<K, V> curr = head.getNext();
-        V value = null;
-
-        // Case 1: Index is not a chain
-        if (curr == null) {
-            table[index] = null;
-            return value;
-        }
+        ExternalChainingMapEntry<K, V> prev = null;
+        ExternalChainingMapEntry<K, V> curr = table[index];
 
         // Iterate through linked list to find key
-        boolean keyFound = false;
         while (curr != null) {
-            if (curr.getValue() == key) {
-                value = curr.getValue();
-                keyFound = true;
-                break;
+            // Key Found
+            if (curr.getKey().equals(key)) {
+
+                // Store old value
+                V value = curr.getValue();
+
+                // Edge case: key is head
+                if (prev == null) {
+                    table[index] = curr.getNext(); // Remove head
+                }
+
+                else {
+                    prev.setNext(curr.getNext()); // Remove key
+                }
+
+                size --;
+                return value;
             }
+            // Take step forward
             prev = curr;
             curr = curr.getNext();
         }
 
-        // Remove key
-        if (keyFound) {
-            prev.setNext(curr.getNext());
-        }
-        else {
-            throw new NoSuchElementException("Error: Provided key does not exist in map.");
-        }
-
-        // Decrement size
-        size --;
-
-        return value;
+        // Error Handling: Key does not exist in map
+        throw new NoSuchElementException("Error: Provided key does not exist in map.");
     }
+
 
     /**
      * Helper method stub for resizing the backing table to length.
