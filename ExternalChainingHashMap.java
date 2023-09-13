@@ -122,6 +122,9 @@ public class ExternalChainingHashMap<K, V> {
             table[index] = new ExternalChainingMapEntry<>(key, value, head);
         }
 
+        // Increment size
+        size ++;
+
         return oldValue;
     }
 
@@ -173,6 +176,9 @@ public class ExternalChainingHashMap<K, V> {
         // Remove key
         prev.setNext(curr);
 
+        // Decrement size
+        size --;
+
         return value;
     }
 
@@ -194,7 +200,7 @@ public class ExternalChainingHashMap<K, V> {
      * @param length The new length of the backing table.
      */
     private void resizeBackingTable(int length) {
-        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+
     }
 
     /**
