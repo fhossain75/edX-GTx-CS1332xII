@@ -177,12 +177,11 @@ public class ExternalChainingHashMap<K, V> {
 
         // Remove key
         if (keyFound) {
-            prev.setNext(curr);
+            prev.setNext(curr.getNext());
         }
         else {
             throw new NoSuchElementException("Error: Provided key does not exist in map.");
         }
-
 
         // Decrement size
         size --;
