@@ -102,7 +102,7 @@ public class ExternalChainingHashMap<K, V> {
 
         // Check if key is duplicate
         while (curr != null) {
-            if (curr.getValue() == key) {
+            if (curr.getKey() == key) {
                 isDuplicate = true;
                 oldValue = curr.getValue();
                 break;
