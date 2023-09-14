@@ -39,7 +39,55 @@ public class MinHeap<T extends Comparable<? super T>> {
      * @throws java.lang.IllegalArgumentException If the data is null.
      */
     public void add(T data) {
-        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
+
+        // Error handling: Invalid input
+        if (data == null) {
+            throw new IllegalArgumentException("Error: Invalid input.");
+        }
+
+        // Increment size
+        size ++;
+
+        // Check if resizing is needed
+        if (backingArray.length < size) {
+            // Init new array
+            T[] newBackingArray = (T[]) new Comparable[backingArray.length * 2 + 1];
+
+            // Copy elements to new backing array
+            for (int i = 0; i < backingArray.length; i++) {
+                newBackingArray[i] = backingArray[i];
+            }
+
+            // Update backing array
+            backingArray = newBackingArray;
+        }
+
+        // Add element to back of array
+        backingArray[size] = data;
+
+        // Unheap
+        int currIndex = size;
+        int parentIndex = (int) Math.floor( (double) (size - 1) / 2);
+
+        while (parentIndex > 1) {
+
+            T curr = backingArray[currIndex];
+            T parent = backingArray[parentIndex];
+
+            // Check if node is greater than parent node
+            if (curr.compareTo(parent) > 0) {
+
+                // Swap nodes
+                backingArray[currIndex] = parent;
+                backingArray[parentIndex] = curr;
+
+                // Calculate index of next parent
+                parentIndex = (int) Math.floor( (double) (currIndex - 1) / 2);
+            }
+            else {
+                break;
+            }
+        }
     }
 
     /**
