@@ -103,6 +103,11 @@ public class MinHeap<T extends Comparable<? super T>> {
      */
     public T remove() {
 
+        // Error handling: Empty heap
+        if (size == 0) {
+            throw new NoSuchElementException("Error: Empty heap");
+        }
+
         // Replace root with last element
         T root = backingArray[1];
         backingArray[1] = backingArray[size];
@@ -132,6 +137,8 @@ public class MinHeap<T extends Comparable<? super T>> {
                 break;
             }
         }
+        // Decrement size
+        size --;
         return root;
     }
 
