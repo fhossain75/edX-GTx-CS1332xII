@@ -67,7 +67,7 @@ public class MinHeap<T extends Comparable<? super T>> {
 
         // Unheap
         int currIndex = size;
-        int parentIndex = (int) Math.floor( (double) (currIndex - 1) / 2);
+        int parentIndex = currIndex / 2;
 
         while (parentIndex > 1) {
 
@@ -83,7 +83,7 @@ public class MinHeap<T extends Comparable<? super T>> {
 
                 // Calculate index of next level
                 currIndex = parentIndex;
-                parentIndex = (int) Math.floor( (double) (currIndex - 1) / 2);
+                parentIndex = currIndex / 2;
             }
             else {
                 break;
@@ -115,7 +115,7 @@ public class MinHeap<T extends Comparable<? super T>> {
 
         // Bubble down
         int currIndex = 1;
-        int childIndex = currIndex * 2 + 1;
+        int childIndex = currIndex * 2;
 
         while (childIndex < size) {
 
@@ -131,7 +131,7 @@ public class MinHeap<T extends Comparable<? super T>> {
 
                 // Calculate index of next child
                 currIndex = childIndex;
-                childIndex = currIndex * 2 + 1;
+                childIndex = currIndex * 2;
             }
             else {
                 break;

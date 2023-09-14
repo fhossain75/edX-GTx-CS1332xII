@@ -1,0 +1,77 @@
+[Executed at: Wed Sep 13 22:50:52 PDT 2023]
+
+============================================================
+MinHeap.java successfully compiled.
+============================================================
+Tests Passed: 13 / 29
+
+[Test Failure: add] [-0.34] : Unexpected content after adding 0 to the MinHeap.
+	Before : [null, 7, 14, 21, 28, 35, 42, 49, 56, 63, null, null, null]
+	Expected : [null, 0, 7, 21, 28, 14, 42, 49, 56, 63, 35, null, null]
+	Actual : [null, 7, 14, 21, 0, 35, 42, 49, 56, 63, 28, null, null]
+
+[Test Failure: add] [-0.34] : Unexpected content after adding 7 to the MinHeap.
+	Before : [null, 0, 14, 21, null, null, null, null, null, null, null, null, null]
+	Expected : [null, 0, 7, 21, 14, null, null, null, null, null, null, null, null]
+	Actual : [null, 0, 14, 21, 7, null, null, null, null, null, null, null, null]
+
+[Test Failure: add] [-0.34] : This add test was inconclusive due to: java.lang.ArrayIndexOutOfBoundsException: Index 13 out of bounds for length 13
+Here is the stack trace to help identify the error in your code:
+	at MinHeap.add, line number: 66
+
+[Test Failure: add] [-0.34] : This add test was inconclusive due to: java.lang.ArrayIndexOutOfBoundsException: Index 13 out of bounds for length 13
+Here is the stack trace to help identify the error in your code:
+	at MinHeap.add, line number: 66
+
+[Test Failure: add] [-0.34] : This add test was inconclusive due to: java.lang.ArrayIndexOutOfBoundsException: Index 13 out of bounds for length 13
+Here is the stack trace to help identify the error in your code:
+	at MinHeap.add, line number: 66
+
+[Test Failure: add] [-0.34] : This add test was inconclusive due to: java.lang.ArrayIndexOutOfBoundsException: Index 26 out of bounds for length 26
+Here is the stack trace to help identify the error in your code:
+	at MinHeap.add, line number: 66
+
+[Test Failure: remove] [-0.34] : Unexpected content after removing 0 (the minimum element) from the MinHeap.
+	Before : [null, 0, 7, 14, 21, 28, 35, 42, null, null, null, null, null]
+	Expected : [null, 7, 21, 14, 42, 28, 35, null, null, null, null, null, null]
+	Actual : [null, 14, 7, 42, 21, 28, 35, null, null, null, null, null, null]
+
+[Test Failure: remove] [-0.34] : Unexpected content after removing 0 (the minimum element) from the MinHeap.
+	Before : [null, 0, 7, 14, 21, 28, 35, 42, 49, 56, null, null, null]
+	Expected : [null, 7, 21, 14, 49, 28, 35, 42, 56, null, null, null, null]
+	Actual : [null, 14, 7, 42, 21, 28, 35, 56, 49, null, null, null, null]
+
+[Test Failure: remove] [-0.34] : Unexpected content after removing 0 (the minimum element) from the MinHeap.
+	Before : [null, 0, 7, 14, 42, 28, 35, 21, null, null, null, null, null]
+	Expected : [null, 7, 21, 14, 42, 28, 35, null, null, null, null, null, null]
+	Actual : [null, 14, 7, 21, 42, 28, 35, null, null, null, null, null, null]
+
+[Test Failure: remove] [-0.34] : Unexpected content after removing 0 (the minimum element) from the MinHeap.
+	Before : [null, 0, 7, 14, 21, 28, 35, 42, 56, 49, null, null, null]
+	Expected : [null, 7, 21, 14, 49, 28, 35, 42, 56, null, null, null, null]
+	Actual : [null, 14, 7, 42, 21, 28, 35, 49, 56, null, null, null, null]
+
+[Test Failure: remove] [-0.34] : Unexpected content after removing 0 (the minimum element) from the MinHeap.
+	Before : [null, 0, 7, 14, 21, 28, 35, 42, 56, 49, 63, null, null]
+	Expected : [null, 7, 21, 14, 49, 28, 35, 42, 56, 63, null, null, null]
+	Actual : [null, 14, 7, 42, 21, 28, 35, 63, 56, 49, null, null, null]
+
+[Test Failure: remove] [-0.34] : Unexpected content after removing 0 (the minimum element) from the MinHeap.
+	Before : [null, 0, 7, 14, 28, 21, 35, 49, 42, 56, 63, 70, null]
+	Expected : [null, 7, 21, 14, 28, 63, 35, 49, 42, 56, 70, null, null]
+	Actual : [null, 14, 7, 49, 28, 21, 35, 70, 42, 56, 63, null, null]
+
+[Test Failure: remove] [-0.34] : Unexpected content after removing 0 (the minimum element) from the MinHeap.
+	Before : [null, 0, 7, 14, 35, 28, 42, 21, null, null, null, null, null]
+	Expected : [null, 7, 21, 14, 35, 28, 42, null, null, null, null, null, null]
+	Actual : [null, 14, 7, 21, 35, 28, 42, null, null, null, null, null, null]
+
+[Test Failure: validSize] [-0.34] : Size variable could not be validated for the following method(s) due to early test failure(s): add, remove.
+
+[Test Failure: validData] [-0.34] : Returned data could not be validated for the following method(s) due to early test failure(s): remove.
+
+[Test Failure: compareTo] [-0.34] : Correct compareTo() usage could not be validated for the following method(s) due to early test failure(s): remove, add.
+
+
+Score: 4.48 / 10.0
+============================================================
