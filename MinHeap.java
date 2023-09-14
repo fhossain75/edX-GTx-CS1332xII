@@ -67,21 +67,22 @@ public class MinHeap<T extends Comparable<? super T>> {
 
         // Unheap
         int currIndex = size;
-        int parentIndex = (int) Math.floor( (double) (size - 1) / 2);
+        int parentIndex = (int) Math.floor( (double) (currIndex - 1) / 2);
 
         while (parentIndex > 1) {
 
             T curr = backingArray[currIndex];
             T parent = backingArray[parentIndex];
 
-            // Check if node is greater than parent node
-            if (curr.compareTo(parent) > 0) {
+            // Check if node is less than the parent node
+            if (curr.compareTo(parent) < 0) {
 
                 // Swap nodes
                 backingArray[currIndex] = parent;
                 backingArray[parentIndex] = curr;
 
-                // Calculate index of next parent
+                // Calculate index of next level
+                currIndex = parentIndex;
                 parentIndex = (int) Math.floor( (double) (currIndex - 1) / 2);
             }
             else {
@@ -101,8 +102,37 @@ public class MinHeap<T extends Comparable<? super T>> {
      * @throws java.util.NoSuchElementException If the heap is empty.
      */
     public T remove() {
-        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        return null;
+
+        // Replace root with last element
+        T root = backingArray[1];
+        backingArray[1] = backingArray[size];
+        backingArray[size] = null;
+
+        // Bubble down
+        int currIndex = 1;
+        int childIndex = currIndex * 2 + 1;
+
+        while (childIndex < size) {
+
+            T curr = backingArray[currIndex];
+            T child = backingArray[childIndex];
+
+            // Check if node is greater than child node
+            if (curr.compareTo(child) > 0) {
+
+                // Swap nodes
+                backingArray[currIndex] = child;
+                backingArray[childIndex] = curr;
+
+                // Calculate index of next child
+                currIndex = childIndex;
+                childIndex = currIndex * 2 + 1;
+            }
+            else {
+                break;
+            }
+        }
+        return root;
     }
 
     /**
