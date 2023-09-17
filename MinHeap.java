@@ -51,7 +51,7 @@ public class MinHeap<T extends Comparable<? super T>> {
         // Check if resizing is needed
         if (backingArray.length <= size) {
             // Init new array
-            T[] newBackingArray = (T[]) new Comparable[backingArray.length * 2 + 1];
+            T[] newBackingArray = (T[]) new Comparable[backingArray.length * 2];
 
             // Copy elements to new backing array
             for (int i = 0; i < backingArray.length; i++) {
