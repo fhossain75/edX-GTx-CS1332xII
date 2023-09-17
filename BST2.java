@@ -104,8 +104,83 @@ public class BST2<T extends Comparable<? super T>> {
      * @throws java.util.NoSuchElementException If the data is not in the tree.
      */
     public T remove(T data) {
-        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        return null; // placeholder
+
+        BSTNode<T> removedNode = new BSTNode<>(null);
+        root = rRemove(root, data, removedNode);
+
+        return removedNode.getData();
+    }
+
+    // Rewriting binary tree to remove input node
+    private BSTNode<T> rRemove(BSTNode<T> curr, T data, BSTNode<T> removedNode) {
+
+        // Data not found
+        if (curr == null) {
+            throw new NoSuchElementException("Error: Data does not exist in tree.");
+        }
+
+        // Current node is smaller than input data
+        else if ((curr.getData().compareTo(data)) < 0) {
+            curr.setRight(rRemove(curr.getRight(), data, removedNode));
+        }
+
+        // Current node is larger than input data
+        else if ((curr.getData().compareTo(data)) > 0) {
+            curr.setLeft(rRemove(curr.getLeft(), data, removedNode));
+        }
+
+        // Data found
+        else {
+            // Decrement size
+            size--;
+
+            // Store data of node to be removed
+            removedNode.setData(curr.getData());
+
+            // Case 1 - Node containing data is a leaf node
+            if (curr.getLeft() == null && curr.getRight() == null) {
+                // Removal: Set current to null
+                return null;
+            }
+
+            // Case 2.1 - Node containing data has one child (left)
+            else if (curr.getLeft() != null && curr.getRight() == null) {
+                // Removal: Replace current with left node
+                return curr.getLeft();
+            }
+            // Case 2.2 - Node containing data has one child (right)
+            else if (curr.getLeft() == null && curr.getRight() != null) {
+                // Removal: Replace current with right node
+                return curr.getRight();
+            }
+
+            // Case 3 - Node containing data has two children
+            else {
+                BSTNode<T> dummy = new BSTNode<>(null);
+                // Set nodes right of current and remove successor
+                curr.setRight(removeSuccessor(curr.getRight(), dummy));
+                // Replace (not remove): Replace current node with successor's data
+                curr.setData(dummy.getData());
+            }
+        }
+
+        return curr;
+    }
+
+    // Get the smallest node of succeeding node - Step right, the far left as possible
+    private BSTNode<T> removeSuccessor(BSTNode<T> curr, BSTNode<T> dummy) {
+
+        // Base case: Successor found
+        if (curr.getLeft() == null) {
+            dummy.setData(curr.getData());
+            // Remove successor by setting to null or right subtree
+            return curr.getRight();
+        }
+        else {
+            // Assign next node
+            curr.setLeft(removeSuccessor(curr.getLeft(), dummy));
+        }
+        return curr;
     }
 
     /**
