@@ -43,6 +43,45 @@ public class MinHeapTests {
     }
 
     @Test(timeout = TIMEOUT)
+    public void testAdd2() {
+        // Before : [null, 0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77]
+        // Expected : [null, 0, 7, 14, 21, 28, 35, 42, 49, 56, 63, 70, 77, 84, null, null, null, null, null, null, null, null, null, null, null, null]
+
+        minHeap.add(0);
+        minHeap.add(7);
+        minHeap.add(14);
+        minHeap.add(21);
+        minHeap.add(28);
+        minHeap.add(35);
+        minHeap.add(42);
+        minHeap.add(49);
+        minHeap.add(56);
+        minHeap.add(63);
+        minHeap.add(70);
+        minHeap.add(77);
+        minHeap.add(84);
+
+        Integer[] expected = new Integer[MinHeap.INITIAL_CAPACITY * 2];
+        expected[1] = 0;
+        expected[2] = 7;
+        expected[3] = 14;
+        expected[4] = 21;
+        expected[5] = 28;
+        expected[6] = 35;
+        expected[7] = 42;
+        expected[8] = 49;
+        expected[9] = 56;
+        expected[10] = 63;
+        expected[11] = 70;
+        expected[12] = 77;
+        expected[13] = 84;
+
+        System.out.println(Arrays.toString(minHeap.getBackingArray()));
+        assertEquals(26, minHeap.getBackingArray().length);
+        assertArrayEquals(expected, minHeap.getBackingArray());
+    }
+
+    @Test(timeout = TIMEOUT)
     public void testRemove() {
         /*
                 89
