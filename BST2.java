@@ -31,9 +31,7 @@ public class BST2<T extends Comparable<? super T>> {
     public boolean contains(T data) {
 // Iterative method
 //        BSTNode<T> curr = root;
-//
 //        while (curr != null) {
-//
 //            // Current value equals input data
 //            if ((curr.getData().compareTo(data)) == 0) {
 //                return true;
@@ -48,14 +46,36 @@ public class BST2<T extends Comparable<? super T>> {
 //            else if ((curr.getData().compareTo(data)) > 0) {
 //                curr = curr.getLeft();
 //            }
-//
 //        }
-//
 //        // Input data not found in tree
 //        return false;
 
-    return false; // place holder
+        return rContains(root, data);
     }
+
+    private boolean rContains(BSTNode<T> curr, T data) {
+
+        // Recursive method
+        if (curr == null) {
+            return false;
+        }
+
+        // Current value equals input data
+        else if ((curr.getData().compareTo(data)) == 0) {
+            return true;
+        }
+
+        // Current node is smaller than input data
+        else if ((curr.getData().compareTo(data)) < 0) {
+            return rContains(curr.getRight(), data);
+        }
+
+        // Current node is smaller than input data
+        else {
+            return rContains(curr.getLeft(), data);
+        }
+    }
+
 
     /**
      * Removes and returns the data from the tree matching the given parameter.
