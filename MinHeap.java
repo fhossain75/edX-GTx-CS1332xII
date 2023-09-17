@@ -49,7 +49,7 @@ public class MinHeap<T extends Comparable<? super T>> {
         size ++;
 
         // Check if resizing is needed
-        if (backingArray.length < size) {
+        if (backingArray.length <= size) {
             // Init new array
             T[] newBackingArray = (T[]) new Comparable[backingArray.length * 2 + 1];
 
@@ -69,7 +69,7 @@ public class MinHeap<T extends Comparable<? super T>> {
         int currIndex = size;
         int parentIndex = currIndex / 2;
 
-        while (parentIndex > 1) {
+        while (currIndex > 1) {
 
             T curr = backingArray[currIndex];
             T parent = backingArray[parentIndex];
@@ -115,12 +115,23 @@ public class MinHeap<T extends Comparable<? super T>> {
 
         // Bubble down
         int currIndex = 1;
-        int childIndex = currIndex * 2;
+        int childIndex = currIndex * 2; // Left child
 
-        while (childIndex < size) {
+        while (childIndex <= size) {
 
             T curr = backingArray[currIndex];
             T child = backingArray[childIndex];
+
+            // Compare which child is smaller
+            int rightChildIndex = childIndex + 1;
+
+            if (rightChildIndex <= size) {
+                T rightChild = backingArray[rightChildIndex];
+                if (rightChild.compareTo(child) < 0) {
+                    child = rightChild;
+                    childIndex = rightChildIndex;
+                }
+            }
 
             // Check if node is greater than child node
             if (curr.compareTo(child) > 0) {
