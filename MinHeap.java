@@ -49,7 +49,7 @@ public class MinHeap<T extends Comparable<? super T>> {
         size ++;
 
         // Check if resizing is needed
-        if (backingArray.length <= size) {
+        if (backingArray.length == size) {
             // Init new array
             T[] newBackingArray = (T[]) new Comparable[backingArray.length * 2];
 
@@ -125,7 +125,7 @@ public class MinHeap<T extends Comparable<? super T>> {
             // Compare which child is smaller
             int rightChildIndex = childIndex + 1;
 
-            if (rightChildIndex <= size) {
+            if (rightChildIndex < size) {
                 T rightChild = backingArray[rightChildIndex];
                 if (rightChild.compareTo(child) < 0) {
                     child = rightChild;
